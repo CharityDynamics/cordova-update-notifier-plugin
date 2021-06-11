@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import Siren
+import Foundation
+import Siren_embed
+
 
 @objc(CDVUpdateNotifierPlugin)
 class UpdateNotifierPlugin : CDVPlugin {
@@ -36,6 +38,28 @@ class UpdateNotifierPlugin : CDVPlugin {
 
         let siren = Siren.shared
 
+        // ~~~
+        func setManager(values: Constants) -> PresentationManager {
+            return PresentationManager(
+                alertTintColor: nil,
+                appName: nil,
+                alertTitle: values.alertTitle,
+                alertMessage: values.alertMessage,
+                updateButtonTitle: values.updateButtonTitle,
+                nextTimeButtonTitle: values.nextTimeButtonTitle,
+                skipButtonTitle: values.skipButtonTitle,
+                forceLanguageLocalization: nil)
+        }
+
+        siren.presentationManager = setManager(values: {(lang: String) in
+            switch lang {
+            case _ where lang.contains("es"): return Spanish()
+            case _ where lang.contains("fr"): return French()
+            default: return English()
+            }
+        }(Bundle.main.preferredLocalizations.first ?? "en"))
+        // ~~~
+
         if let alertType = self.commandDelegate.settings["sirenalerttype"] as? String {
             switch alertType {
             case "critical":
@@ -55,4 +79,37 @@ class UpdateNotifierPlugin : CDVPlugin {
 
         siren.wail()
     }
+}
+
+
+protocol Constants {
+    var alertTitle: String {get}
+    var alertMessage: String {get}
+    var nextTimeButtonTitle: String {get}
+    var skipButtonTitle: String {get}
+    var updateButtonTitle: String {get}
+}
+
+struct English: Constants {
+    let alertTitle = "Update Available"
+    let alertMessage = "A new version of %@ is available. Please update to version %@ now"
+    let nextTimeButtonTitle = "Next time"
+    let skipButtonTitle = "Skip this version"
+    let updateButtonTitle = "Update"
+}
+
+struct Spanish: Constants {
+    let alertTitle = "Actualización disponible"
+    let alertMessage = "Hay disponible una nueva versión de %@. Actualice a la versión %@ ahora"
+    let nextTimeButtonTitle = "La próxima vez"
+    let skipButtonTitle = "Omitir esta version"
+    let updateButtonTitle = "Actualizar"
+}
+
+struct French: Constants {
+    let alertTitle = "Mise à jour disponible"
+    let alertMessage = "Une nouvelle version de %@ est disponible. Veuillez mettre à jour vers la version %@ maintenant"
+    let nextTimeButtonTitle = "La prochaine fois"
+    let skipButtonTitle = "Passez cette version"
+    let updateButtonTitle = "Mettre à jour"
 }
