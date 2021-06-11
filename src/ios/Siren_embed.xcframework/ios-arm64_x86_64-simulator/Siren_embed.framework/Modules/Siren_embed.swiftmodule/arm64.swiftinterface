@@ -1,0 +1,407 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
+// swift-module-flags: -target arm64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name Siren_embed
+import Foundation
+import Swift
+import UIKit
+public struct Model {
+  public let appID: Swift.Int
+  public let currentVersionReleaseDate: Swift.String
+  public let minimumOSVersion: Swift.String
+  public let releaseNotes: Swift.String?
+  public let version: Swift.String
+}
+public enum AlertAction {
+  case appStore
+  case nextTime
+  case skip
+  case unknown
+  public static func == (a: Siren_embed.AlertAction, b: Siren_embed.AlertAction) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct Localization {
+  public enum Language : Swift.String {
+    case arabic
+    case armenian
+    case basque
+    case chineseSimplified
+    case chineseTraditional
+    case croatian
+    case czech
+    case danish
+    case dutch
+    case english
+    case estonian
+    case finnish
+    case french
+    case german
+    case greek
+    case hebrew
+    case hungarian
+    case indonesian
+    case italian
+    case japanese
+    case korean
+    case latvian
+    case lithuanian
+    case malay
+    case norwegian
+    case persian
+    case persianAfghanistan
+    case persianIran
+    case polish
+    case portugueseBrazil
+    case portuguesePortugal
+    case romanian
+    case russian
+    case serbianCyrillic
+    case serbianLatin
+    case slovenian
+    case spanish
+    case swedish
+    case thai
+    case turkish
+    case urdu
+    case ukrainian
+    case vietnamese
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public func alertMessage(forCurrentAppStoreVersion currentAppStoreVersion: Swift.String) -> Swift.String
+  public func alertTitle() -> Swift.String
+  public func nextTimeButtonTitle() -> Swift.String
+  public func skipButtonTitle() -> Swift.String
+  public func updateButtonTitle() -> Swift.String
+}
+public struct AlertConstants {
+  public static var alertMessage: Swift.String
+  public static var alertTitle: Swift.String
+  public static var nextTimeButtonTitle: Swift.String
+  public static var skipButtonTitle: Swift.String
+  public static var updateButtonTitle: Swift.String
+}
+public enum PerformCheck {
+  case onDemand
+  case onForeground
+  public static func == (a: Siren_embed.PerformCheck, b: Siren_embed.PerformCheck) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct UpdateResults {
+  public var alertAction: Siren_embed.AlertAction
+  public let localization: Siren_embed.Localization
+  public let model: Siren_embed.Model
+  public var updateType: Siren_embed.RulesManager.UpdateType
+}
+public struct RulesManager {
+  public init(majorUpdateRules: Siren_embed.Rules = .default, minorUpdateRules: Siren_embed.Rules = .default, patchUpdateRules: Siren_embed.Rules = .default, revisionUpdateRules: Siren_embed.Rules = .default, showAlertAfterCurrentVersionHasBeenReleasedForDays releasedForDays: Swift.Int = 1)
+  public init(globalRules rules: Siren_embed.Rules = .default, showAlertAfterCurrentVersionHasBeenReleasedForDays releasedForDays: Swift.Int = 1)
+  public static var `default`: Siren_embed.RulesManager
+}
+extension RulesManager {
+  public enum UpdateType : Swift.String {
+    case major
+    case minor
+    case patch
+    case revision
+    case unknown
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+}
+public class PresentationManager {
+  public init(alertTintColor tintColor: UIKit.UIColor? = nil, appName: Swift.String? = nil, alertTitle: Swift.String = AlertConstants.alertTitle, alertMessage: Swift.String = AlertConstants.alertMessage, updateButtonTitle: Swift.String = AlertConstants.updateButtonTitle, nextTimeButtonTitle: Swift.String = AlertConstants.nextTimeButtonTitle, skipButtonTitle: Swift.String = AlertConstants.skipButtonTitle, forceLanguageLocalization forceLanguage: Siren_embed.Localization.Language? = nil)
+  public static var `default`: Siren_embed.PresentationManager
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers final public class Siren : ObjectiveC.NSObject {
+  public typealias ResultsHandler = (Swift.Result<Siren_embed.UpdateResults, Siren_embed.KnownError>) -> Swift.Void
+  public static var shared: Siren_embed.Siren
+  final public var apiManager: Siren_embed.APIManager {
+    get
+    set(value)
+  }
+  final public var presentationManager: Siren_embed.PresentationManager {
+    get
+    set(value)
+  }
+  final public var rulesManager: Siren_embed.RulesManager {
+    get
+    set(value)
+  }
+  @objc deinit
+  @objc override dynamic public init()
+}
+extension Siren {
+  final public func wail(performCheck: Siren_embed.PerformCheck = .onForeground, completion handler: Siren_embed.Siren.ResultsHandler? = nil)
+  final public func launchAppStore()
+}
+public struct AppStoreCountry {
+  public let code: Swift.String?
+}
+extension AppStoreCountry {
+  public static var afghanistan: Siren_embed.AppStoreCountry
+  public static var unitedArabEmirates: Siren_embed.AppStoreCountry
+  public static var antiguaAndBarbuda: Siren_embed.AppStoreCountry
+  public static var anguilla: Siren_embed.AppStoreCountry
+  public static var albania: Siren_embed.AppStoreCountry
+  public static var armenia: Siren_embed.AppStoreCountry
+  public static var angola: Siren_embed.AppStoreCountry
+  public static var argentina: Siren_embed.AppStoreCountry
+  public static var austria: Siren_embed.AppStoreCountry
+  public static var australia: Siren_embed.AppStoreCountry
+  public static var azerbaijan: Siren_embed.AppStoreCountry
+  public static var barbados: Siren_embed.AppStoreCountry
+  public static var belgium: Siren_embed.AppStoreCountry
+  public static var bosniaAndHerzegovina: Siren_embed.AppStoreCountry
+  public static var burkinaFaso: Siren_embed.AppStoreCountry
+  public static var bulgaria: Siren_embed.AppStoreCountry
+  public static var bahrain: Siren_embed.AppStoreCountry
+  public static var benin: Siren_embed.AppStoreCountry
+  public static var bermuda: Siren_embed.AppStoreCountry
+  public static var brunei: Siren_embed.AppStoreCountry
+  public static var bolivia: Siren_embed.AppStoreCountry
+  public static var brazil: Siren_embed.AppStoreCountry
+  public static var bahamas: Siren_embed.AppStoreCountry
+  public static var bhutan: Siren_embed.AppStoreCountry
+  public static var botswana: Siren_embed.AppStoreCountry
+  public static var belarus: Siren_embed.AppStoreCountry
+  public static var belize: Siren_embed.AppStoreCountry
+  public static var cameroon: Siren_embed.AppStoreCountry
+  public static var canada: Siren_embed.AppStoreCountry
+  public static var congoRepublic: Siren_embed.AppStoreCountry
+  public static var switzerland: Siren_embed.AppStoreCountry
+  public static var coteDIvoire: Siren_embed.AppStoreCountry
+  public static var chile: Siren_embed.AppStoreCountry
+  public static var china: Siren_embed.AppStoreCountry
+  public static var colombia: Siren_embed.AppStoreCountry
+  public static var congoDemocraticRepublic: Siren_embed.AppStoreCountry
+  public static var costaRica: Siren_embed.AppStoreCountry
+  public static var capeVerde: Siren_embed.AppStoreCountry
+  public static var cyprus: Siren_embed.AppStoreCountry
+  public static var czechRepublic: Siren_embed.AppStoreCountry
+  public static var germany: Siren_embed.AppStoreCountry
+  public static var denmark: Siren_embed.AppStoreCountry
+  public static var dominica: Siren_embed.AppStoreCountry
+  public static var dominicanRepublic: Siren_embed.AppStoreCountry
+  public static var algeria: Siren_embed.AppStoreCountry
+  public static var ecuador: Siren_embed.AppStoreCountry
+  public static var estonia: Siren_embed.AppStoreCountry
+  public static var egypt: Siren_embed.AppStoreCountry
+  public static var spain: Siren_embed.AppStoreCountry
+  public static var finland: Siren_embed.AppStoreCountry
+  public static var fiji: Siren_embed.AppStoreCountry
+  public static var micronesia: Siren_embed.AppStoreCountry
+  public static var france: Siren_embed.AppStoreCountry
+  public static var gabon: Siren_embed.AppStoreCountry
+  public static var unitedKingdom: Siren_embed.AppStoreCountry
+  public static var grenada: Siren_embed.AppStoreCountry
+  public static var georgia: Siren_embed.AppStoreCountry
+  public static var ghana: Siren_embed.AppStoreCountry
+  public static var gambia: Siren_embed.AppStoreCountry
+  public static var greece: Siren_embed.AppStoreCountry
+  public static var guatemala: Siren_embed.AppStoreCountry
+  public static var guineaBissau: Siren_embed.AppStoreCountry
+  public static var guyana: Siren_embed.AppStoreCountry
+  public static var hongKong: Siren_embed.AppStoreCountry
+  public static var honduras: Siren_embed.AppStoreCountry
+  public static var croatia: Siren_embed.AppStoreCountry
+  public static var hungary: Siren_embed.AppStoreCountry
+  public static var indonesia: Siren_embed.AppStoreCountry
+  public static var ireland: Siren_embed.AppStoreCountry
+  public static var israel: Siren_embed.AppStoreCountry
+  public static var india: Siren_embed.AppStoreCountry
+  public static var iraq: Siren_embed.AppStoreCountry
+  public static var iceland: Siren_embed.AppStoreCountry
+  public static var italy: Siren_embed.AppStoreCountry
+  public static var jamaica: Siren_embed.AppStoreCountry
+  public static var jordan: Siren_embed.AppStoreCountry
+  public static var japan: Siren_embed.AppStoreCountry
+  public static var kenya: Siren_embed.AppStoreCountry
+  public static var kyrgyzstan: Siren_embed.AppStoreCountry
+  public static var cambodia: Siren_embed.AppStoreCountry
+  public static var stKittsAndNevis: Siren_embed.AppStoreCountry
+  public static var korea: Siren_embed.AppStoreCountry
+  public static var kuwait: Siren_embed.AppStoreCountry
+  public static var caymanIslands: Siren_embed.AppStoreCountry
+  public static var kazakhstan: Siren_embed.AppStoreCountry
+  public static var laos: Siren_embed.AppStoreCountry
+  public static var lebanon: Siren_embed.AppStoreCountry
+  public static var libya: Siren_embed.AppStoreCountry
+  public static var stLucia: Siren_embed.AppStoreCountry
+  public static var sriLanka: Siren_embed.AppStoreCountry
+  public static var liberia: Siren_embed.AppStoreCountry
+  public static var lithuania: Siren_embed.AppStoreCountry
+  public static var luxembourg: Siren_embed.AppStoreCountry
+  public static var latvia: Siren_embed.AppStoreCountry
+  public static var morocco: Siren_embed.AppStoreCountry
+  public static var moldova: Siren_embed.AppStoreCountry
+  public static var maldives: Siren_embed.AppStoreCountry
+  public static var madagascar: Siren_embed.AppStoreCountry
+  public static var northMacedonia: Siren_embed.AppStoreCountry
+  public static var mali: Siren_embed.AppStoreCountry
+  public static var myanmar: Siren_embed.AppStoreCountry
+  public static var mongolia: Siren_embed.AppStoreCountry
+  public static var montenegro: Siren_embed.AppStoreCountry
+  public static var macau: Siren_embed.AppStoreCountry
+  public static var mauritania: Siren_embed.AppStoreCountry
+  public static var montserrat: Siren_embed.AppStoreCountry
+  public static var malta: Siren_embed.AppStoreCountry
+  public static var mauritius: Siren_embed.AppStoreCountry
+  public static var malawi: Siren_embed.AppStoreCountry
+  public static var mexico: Siren_embed.AppStoreCountry
+  public static var malaysia: Siren_embed.AppStoreCountry
+  public static var mozambique: Siren_embed.AppStoreCountry
+  public static var namibia: Siren_embed.AppStoreCountry
+  public static var niger: Siren_embed.AppStoreCountry
+  public static var nigeria: Siren_embed.AppStoreCountry
+  public static var nicaragua: Siren_embed.AppStoreCountry
+  public static var netherlands: Siren_embed.AppStoreCountry
+  public static var norway: Siren_embed.AppStoreCountry
+  public static var nepal: Siren_embed.AppStoreCountry
+  public static var nauru: Siren_embed.AppStoreCountry
+  public static var newZealand: Siren_embed.AppStoreCountry
+  public static var oman: Siren_embed.AppStoreCountry
+  public static var panama: Siren_embed.AppStoreCountry
+  public static var peru: Siren_embed.AppStoreCountry
+  public static var papuaNewGuinea: Siren_embed.AppStoreCountry
+  public static var philippines: Siren_embed.AppStoreCountry
+  public static var pakistan: Siren_embed.AppStoreCountry
+  public static var poland: Siren_embed.AppStoreCountry
+  public static var portugal: Siren_embed.AppStoreCountry
+  public static var palau: Siren_embed.AppStoreCountry
+  public static var paraguay: Siren_embed.AppStoreCountry
+  public static var qatar: Siren_embed.AppStoreCountry
+  public static var romania: Siren_embed.AppStoreCountry
+  public static var russia: Siren_embed.AppStoreCountry
+  public static var rwanda: Siren_embed.AppStoreCountry
+  public static var saudiArabia: Siren_embed.AppStoreCountry
+  public static var solomonIslands: Siren_embed.AppStoreCountry
+  public static var seychelles: Siren_embed.AppStoreCountry
+  public static var sweden: Siren_embed.AppStoreCountry
+  public static var singapore: Siren_embed.AppStoreCountry
+  public static var slovenia: Siren_embed.AppStoreCountry
+  public static var slovakia: Siren_embed.AppStoreCountry
+  public static var sierraLeone: Siren_embed.AppStoreCountry
+  public static var senegal: Siren_embed.AppStoreCountry
+  public static var suriname: Siren_embed.AppStoreCountry
+  public static var serbia: Siren_embed.AppStoreCountry
+  public static var saoTomeAndPrincipe: Siren_embed.AppStoreCountry
+  public static var elSalvador: Siren_embed.AppStoreCountry
+  public static var swaziland: Siren_embed.AppStoreCountry
+  public static var turksAndCaicosIslands: Siren_embed.AppStoreCountry
+  public static var chad: Siren_embed.AppStoreCountry
+  public static var thailand: Siren_embed.AppStoreCountry
+  public static var tajikistan: Siren_embed.AppStoreCountry
+  public static var turkmenistan: Siren_embed.AppStoreCountry
+  public static var tunisia: Siren_embed.AppStoreCountry
+  public static var tonga: Siren_embed.AppStoreCountry
+  public static var turkey: Siren_embed.AppStoreCountry
+  public static var trinidadAndTobago: Siren_embed.AppStoreCountry
+  public static var taiwan: Siren_embed.AppStoreCountry
+  public static var tanzania: Siren_embed.AppStoreCountry
+  public static var ukraine: Siren_embed.AppStoreCountry
+  public static var uganda: Siren_embed.AppStoreCountry
+  public static var unitedStates: Siren_embed.AppStoreCountry
+  public static var uruguay: Siren_embed.AppStoreCountry
+  public static var uzbekistan: Siren_embed.AppStoreCountry
+  public static var stVincentAndTheGrenadines: Siren_embed.AppStoreCountry
+  public static var venezuela: Siren_embed.AppStoreCountry
+  public static var britishVirginIslands: Siren_embed.AppStoreCountry
+  public static var vietnam: Siren_embed.AppStoreCountry
+  public static var vanuatu: Siren_embed.AppStoreCountry
+  public static var kosovo: Siren_embed.AppStoreCountry
+  public static var yemen: Siren_embed.AppStoreCountry
+  public static var southAfrica: Siren_embed.AppStoreCountry
+  public static var zambia: Siren_embed.AppStoreCountry
+  public static var zimbabwe: Siren_embed.AppStoreCountry
+}
+extension AppStoreCountry : Swift.Equatable {
+}
+public func == (lhs: Siren_embed.AppStoreCountry, rhs: Siren_embed.AppStoreCountry) -> Swift.Bool
+extension AppStoreCountry : Swift.ExpressibleByStringLiteral {
+  public init(stringLiteral value: Swift.StringLiteralType)
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.StringLiteralType
+  public typealias StringLiteralType = Swift.StringLiteralType
+  public typealias UnicodeScalarLiteralType = Swift.StringLiteralType
+}
+public struct APIManager {
+  public init(country: Siren_embed.AppStoreCountry = .unitedStates)
+  public static var `default`: Siren_embed.APIManager
+}
+extension APIManager {
+  public init(countryCode: Swift.String?)
+}
+public enum KnownError : Foundation.LocalizedError {
+  case appStoreAppIDFailure
+  case appStoreDataRetrievalEmptyResults
+  case appStoreDataRetrievalFailure(underlyingError: Swift.Error?)
+  case appStoreJSONParsingFailure(underlyingError: Swift.Error)
+  case appStoreOSVersionUnsupported
+  case appStoreVersionArrayFailure
+  case currentVersionReleaseDate
+  case malformedURL
+  case missingBundleID
+  case noUpdateAvailable
+  case recentlyPrompted
+  case releasedTooSoon(daysSinceRelease: Swift.Int, releasedForDays: Swift.Int)
+  case skipVersionUpdate(installedVersion: Swift.String, appStoreVersion: Swift.String)
+  public var localizedDescription: Swift.String {
+    get
+  }
+}
+public struct Rules {
+  public init(promptFrequency frequency: Siren_embed.Rules.UpdatePromptFrequency, forAlertType alertType: Siren_embed.Rules.AlertType)
+  public static var annoying: Siren_embed.Rules {
+    get
+  }
+  public static var critical: Siren_embed.Rules {
+    get
+  }
+  public static var `default`: Siren_embed.Rules {
+    get
+  }
+  public static var hinting: Siren_embed.Rules {
+    get
+  }
+  public static var persistent: Siren_embed.Rules {
+    get
+  }
+  public static var relaxed: Siren_embed.Rules {
+    get
+  }
+}
+extension Rules {
+  public enum AlertType {
+    case force
+    case option
+    case skip
+    case none
+    public static func == (a: Siren_embed.Rules.AlertType, b: Siren_embed.Rules.AlertType) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public enum UpdatePromptFrequency : Swift.UInt {
+    case immediately
+    case daily
+    case weekly
+    public init?(rawValue: Swift.UInt)
+    public typealias RawValue = Swift.UInt
+    public var rawValue: Swift.UInt {
+      get
+    }
+  }
+}
