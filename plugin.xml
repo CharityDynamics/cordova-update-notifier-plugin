@@ -37,9 +37,8 @@ limitations under the License.
       <preference name="SwiftVersion" value="5.0" />
     </config-file>
 
-    <source-file src="src/ios/UpdateNotifierPlugin.swift" />
-
-    <framework src="Siren" type="podspec" spec="5.7.1" />
+    <source-file src="src/ios/UpdateNotifierPlugin.swift" />    
+    <framework src="src/ios/Siren_embed.xcframework" custom="true"/>
   </platform>
 
 
