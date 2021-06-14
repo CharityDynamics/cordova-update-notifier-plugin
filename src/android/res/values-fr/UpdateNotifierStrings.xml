@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_update_ready">Une mise à jour vient d\'être téléchargée</string>
-    <string name="app_update_install">Redémarrer</string>
-</resources>
